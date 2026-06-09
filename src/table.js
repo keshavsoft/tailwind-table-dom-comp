@@ -1,12 +1,10 @@
-import { initShowTable, initCreate, initTableWithFooter }
-    from "../bin/table/v3/commands/table/template/v12/entry.js";
+import { initShowTable }
+    from "../bin/table/v1/commands/table/template/v3/entry.js";
 
 (async () => {
-    window.KSTableVersion = "v3.12";
+    window.KSTableCompVersion = "v1.3";
 
-    window.KSTable = {};
+    window.KSTableComp = {};
 
-    window.KSTable.initShowTable = initShowTable;
-    window.KSTable.initCreate = initCreate;
-    window.KSTable.initTableWithFooter = initTableWithFooter;
+    window.KSTableComp.initShowTable = initShowTable;
 })();

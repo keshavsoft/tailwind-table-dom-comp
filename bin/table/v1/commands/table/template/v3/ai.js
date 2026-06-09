@@ -96,6 +96,6 @@ class KSAiTable {
     };
 };
 
-window.KSAiTable = KSAiTable;
+window.KSAiCompTable = KSAiTable;
 
 export { KSAiTable };

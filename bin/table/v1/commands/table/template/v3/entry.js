@@ -22,7 +22,7 @@ import { KSAiTable } from "./ai.js";
 //     return table;
 // };
 
-window.KSTable = {};
+window.KSTableComp = {};
 
 export const initShowTable = async (cfg) => {
     // debugger;
@@ -31,6 +31,6 @@ export const initShowTable = async (cfg) => {
     return table;
 };
 
-window.KSTable.initShowTable = initShowTable;
+window.KSTableComp.initShowTable = initShowTable;
 
 // v1.3
