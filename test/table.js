@@ -5,7 +5,7 @@ const commandToSend = "table";
 const load = async () => {
     const v = getLatestVersion();
 
-    return import(`../bin/${commandToSend}/v2/commands/${commandToSend}.js`);
+    return import(`../bin/${commandToSend}/v1/commands/${commandToSend}.js`);
 };
 
 const startFunc = async () => {
