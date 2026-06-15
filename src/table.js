@@ -1,8 +1,8 @@
 import { initShowTable }
-    from "../bin/table/v1/commands/table/template/v4/entry.js";
+    from "../bin/table/v2/commands/table/template/v6/entry.js";
 
 (async () => {
-    window.KSTableCompVersion = "v1.3";
+    window.KSTableCompVersion = "v2.6";
 
     window.KSTableComp = {};
 
