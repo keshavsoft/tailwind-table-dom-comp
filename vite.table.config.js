@@ -6,7 +6,7 @@ export default {
             entry: "src/table.js",
             name: "KSTable",
             formats: ["umd"],
-            fileName: () => `${templateVersion}/kstable.js`
+            fileName: () => `${templateVersion}/kstablecomp.js`
         },
         outDir: "Public",
         emptyOutDir: false
