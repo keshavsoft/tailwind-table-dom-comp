@@ -27,12 +27,24 @@ if (!maxTemplateVersion) {
     throw new Error(`No template version found in ${templateDir}`);
 }
 
-// 3. Ensure src directory exists and Write src/version.js
+// Safety check: Prevent overwriting any existing non-empty directory in dist/ for this version
+const distDir = path.join(__dirname, "dist");
+const targetDistDir = path.join(distDir, maxTemplateVersion);
+
+if (fs.existsSync(targetDistDir)) {
+    const files = fs.readdirSync(targetDistDir);
+    if (files.length > 0) {
+        throw new Error(`\n\n[Conflict] Directory "dist/${maxTemplateVersion}" already exists and is not empty.\nAborting build to protect existing files in dist.\n\n`);
+    }
+}
+
+// Ensure src directory exists
 const srcDir = path.join(__dirname, "src");
 if (!fs.existsSync(srcDir)) {
     fs.mkdirSync(srcDir, { recursive: true });
 }
 
+// 3. Write src/version.js
 const versionFilePath = path.join(srcDir, "version.js");
 const versionFileContent = `// src/version.js (automatically generated)
 export const templateVersion = "${maxTemplateVersion}";
@@ -55,6 +67,7 @@ const tableFileContent = `import { initShowTable }
 fs.writeFileSync(tableFilePath, tableFileContent, "utf8");
 
 export default {
+    publicDir: false,
     build: {
         lib: {
             entry: "src/table.js",
@@ -62,7 +75,7 @@ export default {
             formats: ["umd"],
             fileName: () => `${maxTemplateVersion}/kstablecomp.js`
         },
-        outDir: "Public",
+        outDir: "dist",
         emptyOutDir: false
     }
 };
