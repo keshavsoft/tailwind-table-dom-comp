@@ -27,15 +27,20 @@ if (!maxTemplateVersion) {
     throw new Error(`No template version found in ${templateDir}`);
 }
 
-// 3. Write src/version.js
-const versionFilePath = path.join(__dirname, "src", "version.js");
+// 3. Ensure src directory exists and Write src/version.js
+const srcDir = path.join(__dirname, "src");
+if (!fs.existsSync(srcDir)) {
+    fs.mkdirSync(srcDir, { recursive: true });
+}
+
+const versionFilePath = path.join(srcDir, "version.js");
 const versionFileContent = `// src/version.js (automatically generated)
 export const templateVersion = "${maxTemplateVersion}";
 `;
 fs.writeFileSync(versionFilePath, versionFileContent, "utf8");
 
 // 4. Write src/table.js
-const tableFilePath = path.join(__dirname, "src", "table.js");
+const tableFilePath = path.join(srcDir, "table.js");
 const tableFileContent = `import { initShowTable }
     from "../bin/table/${maxTableVersion}/commands/table/template/${maxTemplateVersion}/entry.js";
 
